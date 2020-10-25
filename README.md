@@ -1,9 +1,13 @@
 # AR-LYNUX
+
+## LOCAL LENGUAJE ESPAÑOL TUTORIAL
+
+## ENGLISH TUTORIAL
 In this tutorial we are going to make an ARGame for Instagram using Spark AR. 
 
 The game will consist on having 3D letters floating all around us, one letter will appear, and we will have to look for it in a 360 world space. Once we find the correct one we tap on it and confetti and sound will come up.
 
-FIRST STEP: BRING THE OBJECTS
+###### FIRST STEP: BRING THE OBJECTS
 
 First we will add the letters to the scene, we need two null objects, one will contain the letters that will float, and the other one the letters that will show up and let us know which one we will have to find. You can make one then duplicate it.
 
@@ -11,11 +15,11 @@ Add asset, null object then add 3d text, then write the letter. Once we have bot
 
 We want them to be seen just with the back camera so, we drag the Camera to the patch editor, we connect the back camera to a Delay because we want the floating letters to appear few seconds before the letter we have to find, we connects it’s null object to the delay. For the beginning letters we will also connect its null object to the Delay but in this case we are going to put a Not between them, so the delay won’t affect. 
 
-SECOND STEP: CONNECTING THE LETTERS
+###### SECOND STEP: CONNECTING THE LETTERS
 
 To the back camera we connect a pulse and a random patch, from 1 to 4 because we have 4 letters (it could also be from 0 to 3), we add a round patch the link it to equals exactly, the second numbers from that patch has to increase with each letter, A would be 0 or 1, B would be 1 or 2. From equals exactly we have two paths, one is the letter that will show up at the beginning, we directly connect to the visibility property of the letter. The other path is the information sent, which object has shown and which one has to react when we touch it. We drag the floating letter to the patch editor, now we have to link the letter patch and the equals exactly to an object tap. What we want is that once we tap on the correct letter something appears and let us know that was the correct one.
 
-THIRD STEP: ADDING TRANSITION, SOUND AND PARTICLES
+###### THIRD STEP: ADDING TRANSITION, SOUND AND PARTICLES
 
 SOUND.
 
@@ -31,7 +35,7 @@ CHANGING SCALE OR ROTATING
 OBJECT TAP, SWITCH, LOOP ANIMATION, TRANSITION then the letter scale patch. We want it to increase once we tap it, so we have to set the start values to 3 (this will be the start scale of the letter) then the end value to 8 or so ,  and make it linear. We can also make it rotate, we just need to bring its rotation patch. 
 
 
-FORTH STEP: ROTATING THE LETTERS AROUND US
+###### FORTH STEP: ROTATING THE LETTERS AROUND US
 
 Once we have all, we want the letters to float around us so it makes the game kind of tricky, we have to open the patch editor, and click the 3d rotation of the null object. 
 We add the following patches: Loop animation and transition and we link them to the 3d rotation
@@ -41,14 +45,14 @@ If you also want to 3d rotate the letter on their selves you have to do the same
 LETTERS ROTATING ON THEIR AXES
 We do the same as we did with the floating letters but in this case we take the rotation from each letter, and set the end Y axis to 360.
 
-FIFTH STEP: INSTRUCTION
+###### FIFTH STEP: INSTRUCTION
 
 We want the users to know that the filter only works on the back camera, so we go to Device add instructions and set the Flip Camera instruction it will automatically give us the patch, I recomendó to change the time from 5 to 3.
 
 IF WE WANT MORE LETTERS WE JUST NEED TO REPLICATE EXACTLY WHAT WE HAVE DONE. 
 
 
-ADVANCED START
+###### ADVANCED START
 
 In this case, we will have a play icon nothing else appearing on the screen, once we are ready we touch start and a letter will show up, that’s the one we have to find, after that a countdown will start and once it finishes the floating letters will appear.
 
@@ -62,14 +66,14 @@ Now lets go to the random letter.
 We are on the OPTION SENDER Output 0, we connect a pulse and a random patch, from 1 to 5 cause we have 4 letters, we add ROUND patch then EQUALS EXACTLY from equal exactly we have to paths, one is the letter that will show up at the beginning, we directly connect to the visibility property. The other path is the information we have to send, which object has shown and which one has to react when we touch it. We drag the floating letters to the patch editor, now we have to link the letter patch and the equals exactly patch to an OBJECT TAP, now we want is that once we tap on the correct letter something appears and let us now that was the correct one. (FOLLOW THE SAME STEPS WE DID BEFORE)
 
 
-SEARCH THIS OBJECT INSTRUCTION (not allowed on Instagram or facebook)
+###### SEARCH THIS OBJECT INSTRUCTION (not allowed on Instagram or facebook)
 We have a start icon and “Search this object” we select it and make it a texture sequence.  Add asset and add an animation sequence, then add de texture sequence. 
 
 To the option sender output 0 we link a PULSE and then to the play Animation, on the animation sequence we select CURRENT FRAME and connect it to the progress from the animation. 
 
 This means we will have the play and once we touch it the instructions will pop out.
 
-COUNTDOWN TIMER (this could be also not allowed because of static text)
+###### COUNTDOWN TIMER (this could be also not allowed because of static text)
 
 Add asset, add script, we write the code, then we charge it on spark. Script in TO SCRIPS we tap on plus and Add, Timer which has to be a number. We create a text named TimerText.
 
