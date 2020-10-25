@@ -1,6 +1,5 @@
 # AR-LYNUX
-
-## LOCAL LENGUAJE ESPAÑOL TUTORIAL
+- FULL TUTORIAL: https://youtu.be/dQkNVcW_oG0
 
 ## ENGLISH TUTORIAL
 In this tutorial we are going to make an ARGame for Instagram using Spark AR. 
@@ -109,4 +108,110 @@ Promise.all([
 
 });
 
+## LOCAL LENGUAHE ESPAÑOL ( SPANISH ) TUTORIAL
 
+En este tutorial vamos a hacer un juego AR para Instagram usando Spark AR.
+
+El juego consistirá en tener letras 3D flotando a nuestro alrededor, aparecerá una letra y tendremos que buscarla en un espacio 360. Una vez que encontremos el correcto, lo pulsamos y aparecerán confeti y sonido.
+
+###### PRIMER PASO: CREAR LOS OBJETOS
+
+Primero agregaremos las letras a la escena, necesitamos dos objetos nulos, uno contendrá las letras que flotarán, y el otro las letras que aparecerán y nos dejarán saber cuál tendremos que encontrar. Puedes hacer uno y luego duplicarlo.
+
+Agregue asset, objeto nulo, luego agregue texto en 3D, despúes escriba la letra. Una vez que tengamos ambos objetos nulos con las letras, reubicaremos las letras flotantes en la escena, necesitamos que estén fuera de la vista de la cámara, así que simplemente sepárelas y colóquelas alrededor del punto de la cámara y la vista de la cámara.
+
+Queremos que se vean solo con la cámara trasera así que arrastramos la Cámara al editor de parches, conectamos la cámara trasera a un Delay porque queremos que las letras flotantes aparezcan unos segundos antes de la letra que tenemos que encontrar, conectamos es un objeto nulo para el retraso. Para las letras iniciales también conectaremos su objeto nulo al Delay pero en este caso vamos a poner un Not entre ellas, para que el delay no afecte.
+
+###### SEGUNDO PASO: CONECTAR LAS LETRAS
+
+A la cámara trasera conectamos pulse y  random, del 1 al 4 porque tenemos 4 letras (también podría ser del 0 al 3), agregamos un parche round que enlazamos con equals exaclty, los segundos números de ese. El parche tiene que aumentar con cada letra, A sería 0 o 1, B sería 1 o 2. De igual a exactamente tenemos dos caminos, uno es la letra que aparecerá al principio, conectamos directamente a la propiedad de visibilidad de la carta. El otro camino es la información enviada, qué objeto ha mostrado y cuál tiene que reaccionar cuando lo tocamos. Arrastramos la letra flotante al editor de parches, ahora tenemos que vincular el parche equals exactly a uno de object tap. Lo que queremos es que una vez que hagamos tapping en la letra correcta, aparezca algo y nos haga saber que era la correcta.
+
+###### TERCER PASO: AÑADIR TRANSICIÓN, SONIDO Y PARTÍCULAS
+
+SONIDO.
+
+Agregar activo, desde AR Library, importamos el sonido que preferimos, lo arrastramos al editor de parches. Para tocar el objeto agregamos, SINGLE CLIP CONTROLERP y luego un AUDIO PLAYER, vinculamos el sonido al clip de audio del reproductor de audio y luego a su altavoz.
+
+CONFETTI DE PARTÍCULAS.
+
+AÑADIR UN OBJETO y luego  un SISTEMA DE PARTÍCULAS, modificarlo para que parezca confeti o lo que quieras. Toque el objeto, luego cambie el delay porque no queremos que aparezca de inmediato, retraso de 1 segundo, luego agregue la visibilidad del emisor.
+
+
+CAMBIAR ESCALA O GIRAR
+
+OBJETO TAP, SWITCH, LOOP ANIMATION, TRANSITION y luego el parche de escala de letras. Queremos que aumente una vez que lo toquemos, por lo que tenemos que establecer los valores de inicio en 3 (esta será la escala de inicio de la letra), luego el valor final en 8 más o menos, y hacerlo lineal. También podemos hacer que gire, solo necesitamos traer su parche de rotación.
+
+
+###### CUARTO PASO: GIRANDO LAS LETRAS A nuestro alrededor
+
+Una vez que tengamos todo, queremos que las letras floten a nuestro alrededor, por lo que hace que el juego sea un poco complicado, tenemos que abrir el editor de parches y hacer clic en la rotación 3D del objeto nulo.
+Agregamos los siguientes parches: loop animation y transition y los vinculamos a la rotación 3d
+Establecemos la duración en 20 y la transición final del eje y en 360.
+Si también quieres rotar la letra en 3D, tienes que hacer los mismos pasos pero con su rotación en 3D, esta vez la duración podría establecerse en 8 para que se muevan un poco más rápido.
+
+LETRAS GIRANDO SOBRE SUS EJES
+Hacemos lo mismo que hicimos con las letras flotantes, pero en este caso tomamos la rotación de cada letra y establecemos el eje Y final en 360.
+
+###### QUINTO PASO: INSTRUCCIÓN
+
+Queremos que los usuarios sepan que el filtro solo funciona en la cámara trasera, así que vamos a Device add instructions y configuramos la instrucción gira la cámara que automáticamente nos dará el parche, recomiendo cambiar el tiempo de 5 a 3.
+
+SI QUEREMOS MÁS LETRAS, SOLO NECESITAMOS REPLICAR EXACTAMENTE LO QUE HEMOS HECHO.
+
+###### INICIO AVANZADO
+
+En este caso tendremos un ícono de play nada más apareciendo en la pantalla, una vez estemos listos tocamos iniciar y aparecerá una letra, esa es la que tenemos que encontrar, luego de eso comenzará una cuenta atrás y una vez finalice la aparecerán letras flotantes.
+
+Tenemos que agregar un plano y en ese plano un icono de inicio.
+
+Arrastramos el plano al editor de parches, lo que queremos es que una vez que toquemos el inicio aparezca una letra aleatoria y automáticamente envíe la información de qué letra se ha mostrado.
+
+Conectamos un tap de Objeto al plano, luego a la parte de aumento del contador, el conteo máximo sería 2, lo conectamos a la parte de opción de un OPTION SENDER, en la salida 0 vamos a vincular las letras que usted tenemos que encontrar, y en la salida 1 las letras que flotarán a nuestro alrededor, queremos que aparezcan unos segundos antes de la letra que tenemos que encontrar así que desde la salida 1 tenemos que conectar una señal NOT y un DELAY, ponemos el retraso a 4 segundos, y luego tenemos que hacer clic en la flecha visible de las letras giratorias.
+
+Ahora vayamos a la letra aleatoria.
+Estamos en la OPTION SENDER Outpout 0, conectamos pulse y un parche aleatorio, de 1 a 5 porque tenemos 4 letras, agregamos el parche ROUND y luego EQUALS EXACTLY  de igual exactamente tenemos a las rutas, una es la letra que mostrará al principio, nos conectamos directamente a la propiedad de visibilidad. El otro camino es la información que tenemos que enviar, qué objeto ha mostrado y cuál tiene que reaccionar cuando lo tocamos. Arrastramos las letras flotantes al editor de parches, ahora tenemos que vincular el parche de letras y el parche igual exactamente a un OBJETO TAP, ahora lo que queremos es que una vez que toquemos en la letra correcta aparezca algo y nos dejen ahora que era el correcto uno. (SIGA LOS MISMOS PASOS QUE HICIMOS ANTES)
+
+
+###### BUSCAR ESTE OBJETO INSTRUCCIÓN (no permitido en Instagram o Facebook)
+Tenemos un icono de inicio y “search this object” lo seleccionamos y lo convertimos en una secuencia de textura. Agregue activos y agregue una secuencia de animación, luego agregue la secuencia de textura.
+
+A la opción remitente salida 0 enlazamos un PULSO y luego a la animación de reproducción, en la secuencia de animación seleccionamos FOTO ACTUAL y lo conectamos al progreso de la animación.
+
+Esto significa que tendremos el juego y una vez que lo toquemos aparecerán las instrucciones.
+
+###### COUNTDOWN TIMER (esto también podría no estar permitido debido al texto estático)
+
+Agregue asset, agregue script, escribimos el código, luego lo cargamos en Spark. En el script TO SCRIPS, tocamos más y Add, Timer, que tiene que ser un número. Creamos un texto llamado TimerText.
+
+Al toque del objeto agregamos un retraso de 1 segundo, luego agregamos este parche https://youtu.be/g2a93PBYEJ0 y al parche vinculamos el script Timer a la salida Time, y a la salida Done agregamos NOT y el TimerText. Queremos que pase de 3 a 0, y 1 segundo de velocidad.
+
+
+// How to load in modules
+const Scene = require('Scene');
+
+// Use export keyword to make a symbol available in scripting debug console
+export const Diagnostics = require('Diagnostics');
+
+const Patches = require('Patches');
+
+
+Promise.all([
+
+    Scene.root.findFirst('TimerText'),
+
+]).then(function (results) {
+
+    const timerCountText = results[0];
+
+    Patches.outputs.getScalar('Timer').then(timerObj => {
+
+        timerObj.monitor().subscribe(function (timerEvent) {
+
+            timerCountText.text = timerEvent.newValue.toFixed(2).toString();
+
+        });
+
+    });
+
+
+});
