@@ -108,7 +108,7 @@ Promise.all([
 
 });
 
-## LOCAL LENGUAHE ESPAÑOL ( SPANISH ) TUTORIAL
+## LOCAL LENGUAGE ESPAÑOL ( SPANISH ) TUTORIAL
 
 En este tutorial vamos a hacer un juego AR para Instagram usando Spark AR.
 
