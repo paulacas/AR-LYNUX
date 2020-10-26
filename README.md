@@ -5,6 +5,7 @@ Local lenguage: Spanish
 
 - Walkthrough Video: https://youtu.be/ndfmYPulFF4
 - Full Video Tutorial: https://youtu.be/dQkNVcW_oG0
+- Download Spark AR Software: https://sparkar.facebook.com/ar-studio/download/
 
 ## ENGLISH TUTORIAL
 In this tutorial we are going to make an ARGame for Instagram using Spark AR. 
