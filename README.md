@@ -1,5 +1,10 @@
 # AR-LYNUX
-- FULL TUTORIAL: https://youtu.be/dQkNVcW_oG0
+
+English Tutorial for Beginners
+Local lenguage: Spanish
+
+- Walkthrough Video: https://youtu.be/ndfmYPulFF4
+- Full Video Tutorial: https://youtu.be/dQkNVcW_oG0
 
 ## ENGLISH TUTORIAL
 In this tutorial we are going to make an ARGame for Instagram using Spark AR. 
